@@ -1,20 +1,18 @@
 package com.alexandreesl.handson.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.alexandreesl.handson.model.Client;
 
+@Component
 public class ClientDAO {
 
+	@Autowired
 	private EntityManager entityManager;
-
-	public ClientDAO() {
-		EntityManagerFactory entityManagerFactory = Persistence
-				.createEntityManagerFactory("persistence");
-		this.entityManager = entityManagerFactory.createEntityManager();
-	}
 
 	public Client find(long id) {
 
@@ -22,18 +20,21 @@ public class ClientDAO {
 
 	}
 
+	@Transactional
 	public void create(Client client) {
 
 		entityManager.persist(client);
 
 	}
 
+	@Transactional
 	public void update(Client client) {
 
 		entityManager.merge(client);
 
 	}
 
+	@Transactional
 	public void delete(Client client) {
 
 		entityManager.remove(client);

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<Client id="1" name="Alexandre Eleuterio Santos Lourenco" sex="M" phone="22323456" />
+	<Client id="2" name="Lucebiane Santos Lourenco" sex="F" phone="22323876" />
+</dataset>
