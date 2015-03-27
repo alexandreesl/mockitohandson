@@ -1,19 +1,24 @@
 package com.alexandreesl.handson.dao;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
+import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alexandreesl.handson.model.Client;
 
 @Component
 public class ClientDAO {
 
-	@Autowired
+	@PersistenceContext
 	private EntityManager entityManager;
 
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	@Transactional(readOnly = true)
 	public Client find(long id) {
 
 		return entityManager.find(Client.class, id);

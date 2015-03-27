@@ -1,10 +1,12 @@
-package com.alexandreesl.dao.test;
+package com.alexandreesl.handson.dao.test;
 
 import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
@@ -16,19 +18,23 @@ import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.HibernateException;
 import org.hibernate.internal.SessionImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.After;
 
 public class BaseDBUnitSetup {
 
 	private static IDatabaseConnection connection;
 	private static IDataSet dataset;
 
-	@Autowired
-	protected EntityManager entityManager;
+	@PersistenceUnit
+	public EntityManagerFactory entityManagerFactory;
+
+	private EntityManager entityManager;
 
 	@PostConstruct
 	public void init() throws HibernateException, DatabaseUnitException,
 			SQLException {
+
+		entityManager = entityManagerFactory.createEntityManager();
 
 		connection = new DatabaseConnection(
 				((SessionImpl) (entityManager.getDelegate())).connection());
@@ -44,6 +50,11 @@ public class BaseDBUnitSetup {
 
 		DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
 
+	}
+
+	@After
+	public void afterTests() {
+		entityManager.clear();
 	}
 
 }

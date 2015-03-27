@@ -1,4 +1,4 @@
-package com.alexandreesl.dao.test;
+package com.alexandreesl.handson.dao.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -9,14 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.alexandreesl.handson.core.MyConfiguration;
+import com.alexandreesl.handson.core.test.AppTestConfiguration;
 import com.alexandreesl.handson.dao.ClientDAO;
 import com.alexandreesl.handson.model.Client;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MyConfiguration.class)
-@TransactionConfiguration(defaultRollback=true)
+@ContextConfiguration(classes = AppTestConfiguration.class)
+@TransactionConfiguration(defaultRollback = false)
 public class ClientDAOTest extends BaseDBUnitSetup {
 
 	@Autowired
@@ -48,10 +49,12 @@ public class ClientDAOTest extends BaseDBUnitSetup {
 	}
 
 	@Test
+	@Transactional
 	public void testInsert() {
 
 		Client client = new Client();
 
+		client.setId(3);
 		client.setName("Celina do Sim");
 		client.setPhone(44657688);
 		client.setSex("F");
@@ -61,6 +64,7 @@ public class ClientDAOTest extends BaseDBUnitSetup {
 	}
 
 	@Test
+	@Transactional
 	public void testUpdate() {
 
 		Client client = clientDAO.find(1);
@@ -72,6 +76,7 @@ public class ClientDAOTest extends BaseDBUnitSetup {
 	}
 
 	@Test
+	@Transactional
 	public void testRemove() {
 
 		Client client = clientDAO.find(1);
