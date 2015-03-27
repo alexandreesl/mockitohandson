@@ -3,7 +3,6 @@ package com.alexandreesl.handson.core;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.alexandreesl.handson.dao.ClientDAO;
 import com.alexandreesl.handson.model.Client;
 import com.alexandreesl.handson.service.ClientService;
 
@@ -31,10 +30,6 @@ public class App {
 		client.setSex("F");
 
 		service.create(client);
-
-		ClientDAO dao = context.getBean(ClientDAO.class);
-
-		dao.getEntityManager().clear();
 
 		System.out.println(service.find(6).getName());
 

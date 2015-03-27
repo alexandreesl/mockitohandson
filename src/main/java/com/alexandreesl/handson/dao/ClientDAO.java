@@ -14,10 +14,6 @@ public class ClientDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
 	@Transactional(readOnly = true)
 	public Client find(long id) {
 
