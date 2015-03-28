@@ -17,7 +17,7 @@ import com.alexandreesl.handson.model.Client;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppTestConfiguration.class)
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 public class ClientDAOTest extends BaseDBUnitSetup {
 
 	@Autowired
