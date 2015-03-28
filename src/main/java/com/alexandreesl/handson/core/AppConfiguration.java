@@ -23,7 +23,7 @@ public class AppConfiguration {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dataSource.setUrl("jdbc:hsqldb:mem://standalone-test");
+		dataSource.setUrl("jdbc:hsqldb:mem://standalone");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
 
