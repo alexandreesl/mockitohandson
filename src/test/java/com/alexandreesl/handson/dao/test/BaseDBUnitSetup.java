@@ -43,7 +43,6 @@ public class BaseDBUnitSetup {
 				new HsqldbDataTypeFactory());
 
 		FlatXmlDataSetBuilder flatXmlDataSetBuilder = new FlatXmlDataSetBuilder();
-		flatXmlDataSetBuilder.setColumnSensing(true);
 		InputStream dataSet = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("test-data.xml");
 		dataset = flatXmlDataSetBuilder.build(dataSet);
